@@ -1,0 +1,32 @@
+[
+  {
+    "display_name": "Операционная выручка, без штрафов, удержаний и хранения",
+    "formula": "retail_price + retail_price_recovery + commission_normal + commission_normal_reversed + penalty_commission_rub + penalty_commission_reversed + delivery_rub + return_delivery_rub + ppvz_reward + ppvz_reward_reversed + acquiring_fee + acquiring_fee_reversed + acceptance + cashback_amount + cashback_amount_reversed + cashback_commission_change + cashback_commission_change_reversed + installment_cofinancing_amount + additional_payment + payment_schedule",
+    "data_type": "DOUBLE"
+  },
+  {
+    "display_name": "Операционная прибыль, без штрафов, удержаний и хранения",
+    "formula": "retail_price + retail_price_recovery + commission_normal + commission_normal_reversed + penalty_commission_rub + penalty_commission_reversed + delivery_rub + return_delivery_rub + ppvz_reward + ppvz_reward_reversed + acquiring_fee + acquiring_fee_reversed + acceptance + cashback_amount + cashback_amount_reversed + cashback_commission_change + cashback_commission_change_reversed + installment_cofinancing_amount + additional_payment + payment_schedule + cost_price + cost_price_recovered + additional_expenses + additional_expenses_recovered",
+    "data_type": "DOUBLE"
+  },
+  {
+    "display_name": "Сумма штрафов и удержаний",
+    "formula": "penalty + deduction",
+    "data_type": "DOUBLE"
+  },
+  {
+    "display_name": "Операционная выручка, абсолютная",
+    "formula": "storage_fee + penalty + deduction + retail_price + retail_price_recovery + commission_normal + commission_normal_reversed + penalty_commission_rub + penalty_commission_reversed + delivery_rub + return_delivery_rub + ppvz_reward + ppvz_reward_reversed + acquiring_fee + acquiring_fee_reversed + acceptance + cashback_amount + cashback_amount_reversed + cashback_commission_change + cashback_commission_change_reversed + installment_cofinancing_amount + additional_payment + payment_schedule",
+    "data_type": "DOUBLE"
+  },
+  {
+    "display_name": "Операционная прибыль, без штрафов за позднюю отгрузку, штрафов, удержаний и хранения",
+    "formula": "retail_price + retail_price_recovery + commission_normal + commission_normal_reversed + delivery_rub + return_delivery_rub + ppvz_reward + ppvz_reward_reversed + acquiring_fee + acquiring_fee_reversed + acceptance + cashback_amount + cashback_amount_reversed + cashback_commission_change + cashback_commission_change_reversed + installment_cofinancing_amount + additional_payment + payment_schedule + cost_price + cost_price_recovered + additional_expenses + additional_expenses_recovered",
+    "data_type": "DOUBLE"
+  },
+  {
+    "display_name": "Операционная прибыль, абсолютная",
+    "formula": "storage_fee + penalty + deduction + retail_price + retail_price_recovery + commission_normal + commission_normal_reversed + penalty_commission_rub + penalty_commission_reversed + delivery_rub + return_delivery_rub + ppvz_reward + ppvz_reward_reversed + acquiring_fee + acquiring_fee_reversed + acceptance + cashback_amount + cashback_amount_reversed + cashback_commission_change + cashback_commission_change_reversed + installment_cofinancing_amount + additional_payment + payment_schedule + cost_price + cost_price_recovered + additional_expenses + additional_expenses_recovered",
+    "data_type": "DOUBLE"
+  }
+]

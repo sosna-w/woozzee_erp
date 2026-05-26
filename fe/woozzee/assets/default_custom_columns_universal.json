@@ -1,0 +1,58 @@
+{
+  "prices_screen_new": [
+    {
+      "display_name": "Комиссия FBS",
+      "formula": "discountedPrice * fbsCommission / 100"
+    },
+    {
+      "display_name": "Комиссия FBO",
+      "formula": "discountedPrice * fboCommission / 100"
+    },
+    {
+      "display_name": "Комиссия Клуб FBS",
+      "formula": "clubDiscountedPrice * fbsCommission / 100"
+    },
+    {
+      "display_name": "Комиссия Клуб FBO",
+      "formula": "clubDiscountedPrice * fboCommission / 100"
+    },
+    {
+      "display_name": "Выручка FBS",
+      "formula": "discountedPrice - fbsLogistics - (discountedPrice * fbsCommission / 100)"
+    },
+    {
+      "display_name": "Выручка FBO",
+      "formula": "discountedPrice - fboLogistics - (discountedPrice * fboCommission / 100)"
+    },
+    {
+      "display_name": "Выручка Клуб FBS",
+      "formula": "clubDiscountedPrice - fbsLogistics - (clubDiscountedPrice * fbsCommission / 100)"
+    },
+    {
+      "display_name": "Выручка Клуб FBO",
+      "formula": "clubDiscountedPrice - fboLogistics - (clubDiscountedPrice * fboCommission / 100)"
+    },
+    {
+      "display_name": "Прибыль FBS",
+      "formula": "(discountedPrice - fbsLogistics - (discountedPrice * fbsCommission / 100)) - costPrice - additionalExpenses"
+    },
+    {
+      "display_name": "Прибыль FBO",
+      "formula": "(discountedPrice - fboLogistics - (discountedPrice * fboCommission / 100)) - costPrice - additionalExpenses"
+    },
+    {
+      "display_name": "Прибыль Клуб FBS",
+      "formula": "(clubDiscountedPrice - fbsLogistics - (clubDiscountedPrice * fbsCommission / 100)) - costPrice - additionalExpenses"
+    },
+    {
+      "display_name": "Прибыль Клуб FBO",
+      "formula": "(clubDiscountedPrice - fboLogistics - (clubDiscountedPrice * fboCommission / 100)) - costPrice - additionalExpenses"
+    }
+  ],
+  "another_screen_id": [
+    {
+      "display_name": "Сумма",
+      "formula": "field1 + field2"
+    }
+  ]
+}
