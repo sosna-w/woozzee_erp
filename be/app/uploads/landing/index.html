@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Парсер WB | Виктор Сосна</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            overflow: hidden;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            background: radial-gradient(circle at 10% 20%, #D9525F, #E8A2A2);
+            background-attachment: fixed;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        .glare {
+            position: absolute;
+            top: -100%;
+            left: -100%;
+            width: 300%;
+            height: 300%;
+            background: radial-gradient(circle at 30% 40%, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0.1) 40%, transparent 70%);
+            filter: blur(100px);
+            transform-origin: center center;
+            animation: fastPass 6s infinite alternate ease-in-out;
+            z-index: 1;
+            pointer-events: none;
+            opacity: 0.7;
+            mix-blend-mode: soft-light;
+        }
+
+        @keyframes fastPass {
+            0% {
+                transform: translate(-20%, -20%) rotate(-5deg) scale(1);
+                opacity: 0.3;
+            }
+            50% {
+                transform: translate(30%, 10%) rotate(5deg) scale(1.3);
+                opacity: 0.9;
+            }
+            100% {
+                transform: translate(60%, 30%) rotate(-5deg) scale(1);
+                opacity: 0.3;
+            }
+        }
+
+        .window {
+            position: relative;
+            z-index: 10;
+            max-width: 750px;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-radius: 48px;
+            padding: 30px 35px;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(255, 255, 255, 0.4) inset;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            transition: transform 0.3s ease;
+            text-align: center;
+        }
+
+        .window:hover {
+            transform: translateY(-6px);
+        }
+
+        .logo {
+            margin-bottom: 25px;
+        }
+
+        .logo img {
+            max-width: 300px;
+            width: 100%;
+            height: auto;
+            display: inline-block;
+            filter: drop-shadow(0 6px 10px rgba(0, 0, 0, 0.1));
+        }
+
+        h1 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            color: #0a2a1c;
+            margin-bottom: 15px;
+            line-height: 1.2;
+            text-shadow: 0 2px 4px rgba(255, 255, 255, 0.5);
+        }
+
+        .description {
+            font-size: 1.2rem;
+            font-weight: 400;
+            color: rgba(10, 42, 28, 0.85);
+            margin-bottom: 25px;
+            line-height: 1.7;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .wb-brand {
+            color: #A45A9A;
+            font-weight: 600;
+        }
+
+        /* Контейнер для кнопок */
+        .buttons-container {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            margin-top: 25px;
+        }
+
+        .download-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 14px;
+            background: linear-gradient(145deg, #16A85C, #0e6a3c);
+            border: none;
+            border-radius: 60px;
+            padding: 18px 50px;
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: white;
+            cursor: pointer;
+            box-shadow: 0 15px 25px -8px rgba(0, 0, 0, 0.2);
+            transition: all 0.2s ease;
+            text-decoration: none;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            width: fit-content;
+        }
+
+        .download-btn i {
+            font-size: 1.8rem;
+            filter: drop-shadow(0 2px 2px rgba(0,0,0,0.2));
+        }
+
+        .download-btn:hover {
+            background: linear-gradient(145deg, #2eb872, #16A85C);
+            box-shadow: 0 18px 30px -6px rgba(0, 0, 0, 0.3);
+            transform: scale(1.02);
+        }
+
+        .download-btn:active {
+            transform: scale(0.98);
+            box-shadow: 0 8px 15px -4px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Стили для кнопки-заглушки Android */
+        .android-btn {
+            background: linear-gradient(145deg, #b0b0b0, #7a7a7a);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .android-btn:hover {
+            background: linear-gradient(145deg, #c0c0c0, #8a8a8a);
+            box-shadow: 0 18px 30px -6px rgba(0, 0, 0, 0.2);
+            transform: scale(1.02);
+        }
+
+        .android-btn:active {
+            transform: scale(0.98);
+        }
+
+        /* Стиль для заблокированной кнопки (Android) */
+        .download-btn.disabled {
+            opacity: 0.6;
+            pointer-events: none;
+            cursor: default;
+            filter: grayscale(0.3);
+        }
+
+        /* Убираем лишние отступы у кнопок внутри контейнера */
+        .buttons-container .download-btn {
+            margin-left: 0;
+            margin-right: 0;
+        }
+
+        @media (max-width: 700px) {
+            .window { padding: 25px; }
+            h1 { font-size: 2.2rem; }
+            .description { font-size: 1.1rem; margin-bottom: 20px; }
+            .download-btn { padding: 14px 30px; font-size: 1.2rem; }
+            .logo img { max-width: 250px; }
+        }
+
+        @media (max-width: 480px) {
+            .window { padding: 20px; }
+            h1 { font-size: 1.9rem; margin-bottom: 10px; }
+            .description { font-size: 1rem; margin-bottom: 20px; }
+            .buttons-container {
+                flex-direction: column;
+                width: 100%;
+            }
+            .download-btn {
+                width: 100%;
+                padding: 14px 20px;
+                font-size: 1.1rem;
+            }
+            .logo img { max-width: 200px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="glare"></div>
+
+    <div class="window">
+        <div class="logo">
+            <!-- Предполагается, что файл logo.png лежит рядом -->
+            <img src="logo.png" alt="Логотип Виктор Сосна">
+        </div>
+        <h1>Парсер цен WB</h1>
+        <div class="description">
+            Бесплатный и быстрый инструмент для получения цен конкурентов и анализа своих товаров
+        </div>
+        
+        <!-- Контейнер с двумя кнопками -->
+        <div class="buttons-container">
+            <!-- Кнопка для Windows (ведёт на серверный эндпоинт, который отдаёт последнюю версию) -->
+            <a href="/download-latest-app" class="download-btn" id="winDownloadBtn">
+                <i class="fab fa-windows"></i> Скачать для Windows
+            </a>
+            <!-- Кнопка для Android (заблокирована) -->
+            <a href="#" class="download-btn android-btn disabled" id="androidDownloadBtn" aria-disabled="true">
+                <i class="fab fa-android"></i> Скоро для Android
+            </a>
+        </div>
+    </div>
+
+    <!-- Небольшой скрипт для отладки (можно удалить без последствий) -->
+    <script>
+        console.log('Кнопка скачивания ведёт на /download-latest-app');
+    </script>
+</body>
+</html>
